@@ -16,12 +16,12 @@ public class BookingController : ControllerBase
 		_logger = logger;
 		_bookingService = bookingService;
 	}
-
+	
 	/// <summary>
 	/// Registers a car pickup.
 	/// </summary>
 	/// <param name="pickupRegistrationDto">The pickup registration data.</param>
-	[HttpPut("pickup")]
+	[HttpPatch("pickup")]
 	[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 	[ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
 	[ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -50,7 +50,7 @@ public class BookingController : ControllerBase
 	/// Registers a car return.
 	/// </summary>
 	/// <param name="returnRegistrationDto">The return registration data.</param>
-	[HttpPut("return")]
+	[HttpPatch("return")]
 	[ProducesResponseType(typeof(ReturnRegistrationDto), StatusCodes.Status200OK)]
 	[ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
 	[ProducesResponseType(StatusCodes.Status500InternalServerError)]

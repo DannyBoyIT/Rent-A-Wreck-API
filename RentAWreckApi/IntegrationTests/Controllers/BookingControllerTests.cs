@@ -25,7 +25,7 @@ public class BookingControllerTests : IClassFixture<CustomWebApplicationFactory>
 		_factory.ConfigureMockRepository(MockHelpers.SetupBookingRepositoryWithDefaultBooking);
 
 		//Act
-		var httpResponse = await _client.PutAsJsonAsync("booking/pickup", pickupRegistrationDto);
+		var httpResponse = await _client.PatchAsJsonAsync("booking/pickup", pickupRegistrationDto);
 
 		//Assert
 		httpResponse.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -39,7 +39,7 @@ public class BookingControllerTests : IClassFixture<CustomWebApplicationFactory>
 		_factory.ConfigureMockRepository(MockHelpers.SetupBookingRepositoryWithDefaultBooking);
 
 		//Act
-		var httpResponse = await _client.PutAsJsonAsync("booking/pickup", pickupRegistrationDto);
+		var httpResponse = await _client.PatchAsJsonAsync("booking/pickup", pickupRegistrationDto);
 
 		//Assert
 		httpResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -54,7 +54,7 @@ public class BookingControllerTests : IClassFixture<CustomWebApplicationFactory>
 		var pickupRegistrationDto = new PickupRegistrationDto(MockHelpers.DefaultBookingDto.BookingNumber, faker.Random.Replace("???###"), faker.PickRandom<CarCategory>(), faker.Random.Replace("########-####"), faker.Date.RecentOffset(), faker.Random.Int(1, 9999));
 
 		//Act
-		var httpResponse = await _client.PutAsJsonAsync("booking/pickup", pickupRegistrationDto);
+		var httpResponse = await _client.PatchAsJsonAsync("booking/pickup", pickupRegistrationDto);
 
 		//Assert
 		httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
@@ -68,7 +68,7 @@ public class BookingControllerTests : IClassFixture<CustomWebApplicationFactory>
 		_factory.ConfigureMockRepository(mock => MockHelpers.SetupBookingRepositoryWithCustomBooking(mock, bookingDto));
 
 		//Act
-		var httpResponse = await _client.PutAsJsonAsync("booking/return", returnRegistrationDto);
+		var httpResponse = await _client.PatchAsJsonAsync("booking/return", returnRegistrationDto);
 
 		//Assert
 		httpResponse.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -87,7 +87,7 @@ public class BookingControllerTests : IClassFixture<CustomWebApplicationFactory>
 		_factory.ConfigureMockRepository(MockHelpers.SetupBookingRepositoryWithDefaultBooking);
 
 		//Act
-		var httpResponse = await _client.PutAsJsonAsync("booking/return", returnRegistrationDto);
+		var httpResponse = await _client.PatchAsJsonAsync("booking/return", returnRegistrationDto);
 
 		//Assert
 		httpResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -102,7 +102,7 @@ public class BookingControllerTests : IClassFixture<CustomWebApplicationFactory>
 		var pickupRegistrationDto = new ReturnRegistrationDto(MockHelpers.DefaultBookingDto.BookingNumber, faker.Date.RecentOffset(), faker.Random.Int(1, 9999));
 
 		//Act
-		var httpResponse = await _client.PutAsJsonAsync("booking/return", pickupRegistrationDto);
+		var httpResponse = await _client.PatchAsJsonAsync("booking/return", pickupRegistrationDto);
 
 		//Assert
 		httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
