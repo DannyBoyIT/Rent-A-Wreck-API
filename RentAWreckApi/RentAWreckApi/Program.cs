@@ -1,7 +1,12 @@
 using Contracts.Interfaces;
+using RentAWreckApi.Repositories;
 using RentAWreckApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+#region Repositories
+builder.Services.AddTransient<IBookingRepository, BookingRepository>();
+#endregion
 
 #region Services
 builder.Services.AddTransient<IRentalPricingService, RentalPricingService>();
