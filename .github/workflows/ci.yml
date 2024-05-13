@@ -23,6 +23,10 @@ jobs:
       - name: Change to project directory
         run: cd RentAWreckApi
 
+      - name: List directory contents
+        run: ls -la
+
+
       - name: Restore dependencies
         run: dotnet restore
 
