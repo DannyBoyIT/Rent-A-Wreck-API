@@ -5,7 +5,7 @@ namespace RentAWreckApi.Services;
 
 public class RentalPricingService : IRentalPricingService
 {
-	public decimal? CalculateRentalPrice(CarCategory carCategory, double daysRented, int kilometersTraveled)
+	public decimal CalculateRentalPrice(CarCategory carCategory, double daysRented, int kilometersTraveled)
 	{
 		if (daysRented < 1)
 			throw new ArgumentOutOfRangeException(nameof(daysRented), daysRented, "Days rented must be at least 1 day.");

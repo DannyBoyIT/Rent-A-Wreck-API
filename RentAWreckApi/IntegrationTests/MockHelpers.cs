@@ -1,5 +1,4 @@
-﻿using Contracts.Constants;
-using Contracts.Interfaces;
+﻿using Contracts.Interfaces;
 using Contracts.Models.Dtos;
 using Moq;
 

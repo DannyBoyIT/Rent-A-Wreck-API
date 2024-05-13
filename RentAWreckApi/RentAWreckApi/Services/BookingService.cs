@@ -5,14 +5,11 @@ namespace RentAWreckApi.Services;
 
 public class BookingService : IBookingService
 {
-    private readonly ILogger<BookingService> _logger;
     private readonly IBookingRepository _bookingRepository;
     private readonly IRentalPricingService _rentalCostCalculatorService;
 
-    public BookingService(ILogger<BookingService> logger, IBookingRepository bookingRepository,
-	    IRentalPricingService rentalCostCalculatorService)
+    public BookingService(IBookingRepository bookingRepository, IRentalPricingService rentalCostCalculatorService)
     {
-        _logger = logger;
         _bookingRepository = bookingRepository;
         _rentalCostCalculatorService = rentalCostCalculatorService;
     }
@@ -22,7 +19,7 @@ public class BookingService : IBookingService
     {
 	    var booking = await _bookingRepository.GetBookingAsync(pickupRegistrationDto.BookingNumber);
 
-	    if (booking == null)
+	    if (booking is null)
 		    return false;
 	    
         booking.RegistrationNumber = pickupRegistrationDto.RegistrationNumber;
@@ -31,7 +28,7 @@ public class BookingService : IBookingService
         booking.PickupDate = pickupRegistrationDto.PickupDate;
         booking.PickupOdometer = pickupRegistrationDto.PickupOdometer;
 
-        await _bookingRepository.UpdateBookingAsync(booking);
+        await _bookingRepository.PatchBookingAsync(booking);
 
         return true;
     }
@@ -41,7 +38,7 @@ public class BookingService : IBookingService
     {
 	    var booking = await _bookingRepository.GetBookingAsync(returnRegistrationDto.BookingNumber);
 
-	    if (booking == null)
+	    if (booking is null)
 		    return null;
 	    
 	    if (returnRegistrationDto.ReturnDate < booking.PickupDate)
@@ -54,14 +51,11 @@ public class BookingService : IBookingService
 	    var kilometersTraveled = returnRegistrationDto.ReturnOdometer - booking.PickupOdometer;
 	    var rentalPrice = _rentalCostCalculatorService.CalculateRentalPrice(booking.Category, daysRented, kilometersTraveled);
 
-	    if (rentalPrice == null)
-		    return null;
-
 	    booking.ReturnDate = returnRegistrationDto.ReturnDate;
 	    booking.ReturnOdometer = returnRegistrationDto.ReturnOdometer;
-	    booking.RentalPrice = (decimal)rentalPrice;
+	    booking.RentalPrice = rentalPrice;
 
-	    await _bookingRepository.UpdateBookingAsync(booking);
+	    await _bookingRepository.PatchBookingAsync(booking);
 
 	    return rentalPrice;
     }

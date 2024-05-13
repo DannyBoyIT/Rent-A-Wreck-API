@@ -6,7 +6,7 @@ namespace RentAWreckApi.Repositories;
 //TODO: Implement repository
 public class BookingRepository : IBookingRepository
 {
-	public Task UpdateBookingAsync(BookingDto bookingDto)
+	public Task PatchBookingAsync(BookingDto bookingDto)
 	{
 		throw new NotImplementedException();
 	}

@@ -1,5 +1,4 @@
 ﻿using Moq;
-using Microsoft.Extensions.Logging;
 using Contracts.Interfaces;
 using Contracts.Models.Dtos;
 using RentAWreckApi.Services;
@@ -15,8 +14,7 @@ public class BookingServiceTests
 	{
 		_bookingRepositoryMock = new Mock<IBookingRepository>();
 		var rentalPricingServiceMock = new Mock<IRentalPricingService>();
-		var loggerMock = new Mock<ILogger<BookingService>>();
-		_bookingService = new BookingService(loggerMock.Object, _bookingRepositoryMock.Object, rentalPricingServiceMock.Object);
+		_bookingService = new BookingService(_bookingRepositoryMock.Object, rentalPricingServiceMock.Object);
 	}
 
 	[Fact]
