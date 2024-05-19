@@ -14,6 +14,6 @@ Follow the below steps for the local setup:
 4. Run `dotnet run` to run the application.
 7. Open the browser and surf to http://localhost:5049/swagger/index.html to see the Swagger documentation and test the API endpoints.
 
-#Pipelines
+# Pipelines
 The pipelines for this repository are written in YAML.<br/>
 The pipelines build the solution and run all the unit and integration tests.<br/>
