@@ -1,6 +1,6 @@
 using Contracts.Interfaces;
-using RentAWreckApi.Repositories;
-using RentAWreckApi.Services;
+using Api.Repositories;
+using Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

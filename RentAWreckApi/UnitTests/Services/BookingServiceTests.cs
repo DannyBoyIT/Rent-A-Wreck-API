@@ -1,7 +1,7 @@
 ﻿using Moq;
 using Contracts.Interfaces;
 using Contracts.Models.Dtos;
-using RentAWreckApi.Services;
+using Api.Services;
 
 namespace UnitTests.Services;
 

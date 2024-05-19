@@ -1,7 +1,7 @@
 ﻿using Contracts.Constants;
 using Contracts.Interfaces;
 
-namespace RentAWreckApi.Services;
+namespace Api.Services;
 
 public class RentalPricingService : IRentalPricingService
 {

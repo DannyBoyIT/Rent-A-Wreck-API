@@ -1,7 +1,7 @@
 ﻿using Contracts.Interfaces;
 using Contracts.Models.Dtos;
 
-namespace RentAWreckApi.Repositories;
+namespace Api.Repositories;
 
 //TODO: Implement repository
 public class BookingRepository : IBookingRepository

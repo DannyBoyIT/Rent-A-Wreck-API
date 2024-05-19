@@ -3,7 +3,7 @@ using System.Net;
 using Contracts.Interfaces;
 using Contracts.Models.Dtos;
 
-namespace RentAWreckApi.Controllers;
+namespace Api.Controllers;
 [ApiController]
 [Route("[controller]")]
 public class BookingController : ControllerBase
@@ -24,7 +24,8 @@ public class BookingController : ControllerBase
 	[HttpPatch("pickup")]
 	[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
 	[ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
-	[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 	public async Task<IActionResult> RegisterPickup(PickupRegistrationDto pickupRegistrationDto)
 	{
 		if (!ModelState.IsValid)
@@ -53,7 +54,8 @@ public class BookingController : ControllerBase
 	[HttpPatch("return")]
 	[ProducesResponseType(typeof(ReturnRegistrationDto), StatusCodes.Status200OK)]
 	[ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
-	[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 	public async Task<IActionResult> RegisterReturn([FromBody] ReturnRegistrationDto returnRegistrationDto)
 	{
 		if (!ModelState.IsValid)

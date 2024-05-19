@@ -1,7 +1,7 @@
 ﻿using Contracts.Interfaces;
 using Contracts.Models.Dtos;
 
-namespace RentAWreckApi.Services;
+namespace Api.Services;
 
 public class BookingService : IBookingService
 {
